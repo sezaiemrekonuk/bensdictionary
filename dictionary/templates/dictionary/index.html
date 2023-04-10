@@ -15,33 +15,41 @@
                         </div>
                     </div>
                     <div class="row rounded-bottom">
-                        <div class="col-2" onclick="copyText()" id="specialChars" data-text="ç">ç</div>
-                        <div class="col-2" onclick="copyText()" id="specialChars" data-text="ğ">ğ</div>
-                        <div class="col-2" onclick="copyText()" id="specialChars" data-text="ı">ı</div>
-                        <div class="col-2" onclick="copyText()" id="specialChars" data-text="ö">ö</div>
-                        <div class="col-2" onclick="copyText()" id="specialChars" data-text="ş">ş</div>
-                        <div class="col-2" onclick="copyText()" id="specialChars" data-text="ü">ü</div>
+                        <div class="col-2" id="specialChars" data-text="ç">ç</div>
+                        <div class="col-2" id="specialChars" data-text="ğ">ğ</div>
+                        <div class="col-2" id="specialChars" data-text="ı">ı</div>
+                        <div class="col-2" id="specialChars" data-text="ö">ö</div>
+                        <div class="col-2" id="specialChars" data-text="ş">ş</div>
+                        <div class="col-2" id="specialChars" data-text="ü">ü</div>
                     </div>
                 </div>
             </div>
         </section>
+        <section id="infoBox" style="margin-top: 5rem;">
+            <div class="infoDiv">
+                <div>
+                    Sözcükte an itibari ile n adet kategori altında toplam m tane veri bulunmaktadır. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis earum aut consequatur. Ea doloremque laudantium harum atque commodi facilis excepturi?
+                </div>
+                <hr>
+                <div style="margin-top: 1rem;">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Est modi iusto quidem ipsum dolore laborum, illum similique quis sapiente voluptatem.
+                </div>
+            </div>
+        </section>
+        <div name="latest-added" class="position-relative w-100 up-scale" style="margin-top: 1.5rem;">
+            <hr class="w-25 position-absolute" style="left: 37.5%;">
+            <span class="position-absolute latest-added-text">Latest Added</span>
+        </div>
     </div>  
+
 {% endblock content %}
 {% block page_js %}
 <script>
-    // Tüm kopyalama butonlarını seç
     var copyButtons = document.querySelectorAll("#specialChars");
-    
-    // Her butona tıklanınca bu fonksiyon çağrılır
     function copyText(event) {
-      // Butonun üzerindeki "data-text" özniteliğindeki metni al
       var buttonText = event.target.getAttribute("data-text");
-      
-      // Input alanına yaz
       document.getElementById("text-input").value += buttonText;
     }
-    
-    // Her butonun tıklama olayına fonksiyonu bağla
     for (var i = 0; i < copyButtons.length; i++) {
       copyButtons[i].addEventListener("click", copyText);
     }

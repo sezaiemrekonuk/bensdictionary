@@ -4,9 +4,11 @@
     --theme-orange-dark: rgba(196,116,0,1);
     --theme-orange-dark-low-opacity: rgba(196,116,0,0.8);
     --theme-white: #e0e0e0;
+    --theme-full-white: #ffffff;
     --theme-black: #222222;
     --theme-blue: #0069FF;
     --theme-gray: #3b3b3b;
+
 }
 
 body {
@@ -109,3 +111,23 @@ body {
     }
 }
 
+/* infoBox */
+
+#infoBox {
+    background: var(--theme-full-white);
+    padding: 1.6rem;
+    border: var(--theme-orange) 2px solid;
+    border-radius: 2rem;
+}
+
+.latest-added-text {
+    padding: 0 1rem;
+    background-color: var(--theme-white);
+    top: 0.2rem;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.up-scale {
+    transform: scale(2.5);
+}
