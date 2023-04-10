@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+{% block content %}
+    <div class="container">
+        <section id="searchBox" class="justify-content-center">
+            <div class="row justify-content-md-center mt-5 text-center">
+                <div class="col-md-6 px-0 overflow-hidden">
+                    <div class="col-12 px-0">
+                        <div class="input-group">
+                            <input type="text" id="text-input" class="form-control no-round no-outline no-border top-left-round" placeholder="Sözlükte bir arama yap...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default theme-orange no-round top-right-round" type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row rounded-bottom">
+                        <div class="col-2" onclick="copyText()" id="specialChars" data-text="ç">ç</div>
+                        <div class="col-2" onclick="copyText()" id="specialChars" data-text="ğ">ğ</div>
+                        <div class="col-2" onclick="copyText()" id="specialChars" data-text="ı">ı</div>
+                        <div class="col-2" onclick="copyText()" id="specialChars" data-text="ö">ö</div>
+                        <div class="col-2" onclick="copyText()" id="specialChars" data-text="ş">ş</div>
+                        <div class="col-2" onclick="copyText()" id="specialChars" data-text="ü">ü</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>  
+{% endblock content %}
+{% block page_js %}
+<script>
+    // Tüm kopyalama butonlarını seç
+    var copyButtons = document.querySelectorAll("#specialChars");
+    
+    // Her butona tıklanınca bu fonksiyon çağrılır
+    function copyText(event) {
+      // Butonun üzerindeki "data-text" özniteliğindeki metni al
+      var buttonText = event.target.getAttribute("data-text");
+      
+      // Input alanına yaz
+      document.getElementById("text-input").value += buttonText;
+    }
+    
+    // Her butonun tıklama olayına fonksiyonu bağla
+    for (var i = 0; i < copyButtons.length; i++) {
+      copyButtons[i].addEventListener("click", copyText);
+    }
+  </script>
+{% endblock page_js %}
