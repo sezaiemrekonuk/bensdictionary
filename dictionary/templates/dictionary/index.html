@@ -12,8 +12,8 @@
                             {% csrf_token %}
                             <input type="text" id="search-input" name="search-input" class="form-control no-round no-outline no-border top-left-round" placeholder="Sözlükte bir arama yap...">
                             <select name="search-type" id="search-type" class="ps-2 pe-1 no-round no-outline no-border" style="border-left: 2px solid var(--theme-orange) !important;">
-                                <option value="1" selected>Tüm Türler</option>
-                                <option value="2">Kelime</option>
+                                <option value="Tüm Türler" selected>Tüm Türler</option>
+                                <option value="Kelime">Kelime</option>
                                 <option value="3">Cümle</option>
                                 <option value="4">Sözcük</option>
                             </select>
@@ -72,7 +72,7 @@
     var copyButtons = document.querySelectorAll("#specialChars");
     function copyText(event) {
       var buttonText = event.target.getAttribute("data-text");
-      document.getElementById("text-input").value += buttonText;
+      document.getElementById("search-input").value += buttonText;
     }
     for (var i = 0; i < copyButtons.length; i++) {
       copyButtons[i].addEventListener("click", copyText);

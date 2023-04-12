@@ -2,5 +2,5 @@
 {% load static %}
 {% block title %}Search{{ searchQuery }}{% endblock %}
 {% block content %}
-{{ searchQuery }}
+{{ searchQuery }} - {% for result in searchResults  %} {{ result.turkish }}{{ result.english }}{{ result.description }} {% endfor %}
 {% endblock content%}

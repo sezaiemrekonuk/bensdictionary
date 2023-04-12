@@ -5,14 +5,19 @@ from . import searcher
 # Create your views here.
 
 def index(request):
-    structures = Structure.objects.all()
-    context = {
-        "structures": structures
-    }
-    return render(request, 'dictionary/index.html', context)
+    return render(request, 'dictionary/index.html')
 
-def search(request):
-    context = {}
+def search(request):   
     if request.method == 'POST':
-        context = { 'searchQuery': request.POST.get('search-input') }
-    return render(request, 'dictionary/search.html', context)
+        searchInput = request.POST.get('search-input')
+        searchType = request.POST.get('search-type')
+        
+        if searchType == 'Tüm Türler':
+            context = { 'searchQuery': searchInput, 'searchResults': searcher.searcher(searchInput) }
+        else:
+            context = { 'searchQuery': searchInput, 'searchResults': searcher.searcher(searchInput, searchType) }
+            
+        return render(request, 'dictionary/search.html', context)
+    
+    else:
+        return render(request, 'dictionary/index.html')
