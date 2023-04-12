@@ -1,1 +1,6 @@
-selam
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Search{{ searchQuery }}{% endblock %}
+{% block content %}
+{{ searchQuery }}
+{% endblock content%}
