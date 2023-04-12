@@ -13,8 +13,7 @@
 
 body {
     background-color: var(--theme-white);
-    overflow-x: hidden;
-}   
+}
 
 .theme-bg-color {
     background: var(--theme-gray);
@@ -107,6 +106,11 @@ body {
     border-top-right-radius: 0.46rem !important;
 }
 
+.resizable-form{
+    overflow-x: hidden;
+    transition: all 1s ease;
+}
+
 @media screen and (max-width: 768px) {
     #searchBox {
         padding: 0 2rem;
@@ -116,7 +120,15 @@ body {
     #searchBox {
         margin-top: 6rem;
         padding: 0;
+    }
+    .resizable-form {
         scale: 1.3;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .resizable-form {
+        scale: 1.4;
     }
 }
 

@@ -5,23 +5,31 @@
     <div class="container">
         <form method="POST" action="{% url 'search' %}" id="searchBox" class="justify-content-center">
             <div class="row justify-content-md-center mt-5 text-center">
-                <div class="col-md-6 px-0 overflow-hidden shadow">
-                    <div class="col-12 px-0">
+                <div class="col-md-6 px-0 shadow">
+                  <div class="resizable-form">
+                    <div class="px-0">
                         <div class="input-group">
                             {% csrf_token %}
                             <input type="text" id="search-input" name="search-input" class="form-control no-round no-outline no-border top-left-round" placeholder="Sözlükte bir arama yap...">
+                            <select name="search-type" id="search-type" class="ps-2 pe-1 no-round no-outline no-border" style="border-left: 2px solid var(--theme-orange) !important;">
+                                <option value="1" selected>Tüm Türler</option>
+                                <option value="2">Kelime</option>
+                                <option value="3">Cümle</option>
+                                <option value="4">Sözcük</option>
+                            </select>
                             <span class="input-group-btn">
                                 <button class="btn btn-default theme-orange no-round top-right-round" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                             </span>
                         </div>
-                    </div>
-                    <div class="row rounded-bottom">
-                        <div class="col-2" id="specialChars" data-text="ç">ç</div>
-                        <div class="col-2" id="specialChars" data-text="ğ">ğ</div>
-                        <div class="col-2" id="specialChars" data-text="ı">ı</div>
-                        <div class="col-2" id="specialChars" data-text="ö">ö</div>
-                        <div class="col-2" id="specialChars" data-text="ş">ş</div>
-                        <div class="col-2" id="specialChars" data-text="ü">ü</div>
+                      </div>
+                      <div class="row rounded-bottom">
+                          <div class="col-2" id="specialChars" data-text="ç">ç</div>
+                          <div class="col-2" id="specialChars" data-text="ğ">ğ</div>
+                          <div class="col-2" id="specialChars" data-text="ı">ı</div>
+                          <div class="col-2" id="specialChars" data-text="ö">ö</div>
+                          <div class="col-2" id="specialChars" data-text="ş">ş</div>
+                          <div class="col-2" id="specialChars" data-text="ü">ü</div>
+                      </div>
                     </div>
                 </div>
             </div>
@@ -37,6 +45,18 @@
                 </div>
             </div>
         </section>
+
+
+
+        <div id="latest-added" class="position-relative w-100 up-scale">
+          <hr class="w-75 position-absolute up-scale" style="left:12.5% ;margin-top: 1.7rem;">
+          <span class="position-absolute latest-added-text text-center"></span>
+      </div>
+      <div class="accordion margin-accordion shadow" id="accordionExample">
+          {% include 'dictionary/partials/_structure.html' %}
+      </div>
+
+
         <div id="latest-added" class="position-relative w-100 up-scale">
             <hr class="w-50  position-absolute up-scale" style="left: 25%; margin-top: 1.7rem;">
             <span class="position-absolute latest-added-text text-center">En Son Eklenenler</span>
