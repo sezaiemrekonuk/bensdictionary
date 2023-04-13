@@ -1,6 +1,18 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}Search{{ searchQuery }}{% endblock %}
+{% block title %}{{ searchQuery }}{% endblock %}
 {% block content %}
-{{ searchQuery }} - {% for result in searchResults  %} {{ result.turkish }}{{ result.english }}{{ result.description }} {% endfor %}
-{% endblock content%}
+<div class="container">
+    <div class="accordion margin-accordion shadow" id="accordionExample">
+        {% for topStructure in topSide %}
+            <a href="{% url 'topStructure' %}"> </a>
+        {% endfor %}
+
+        {% include 'dictionary/partials/_structure.html' with searchResult=searchResults %}
+
+        {% for downStructure in downSide %}
+            <a href="{% url 'downStructure' %}"> </a>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}
