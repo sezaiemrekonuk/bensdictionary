@@ -25,7 +25,7 @@ class typeOf(models.Model):
         super(typeOf, self).save(*args, **kwargs)
 
 class Structure(models.Model):
-    structureType = models.OneToOneField(typeOf, on_delete=models.CASCADE, null=True, blank=True)
+    structureType = models.ManyToManyField(typeOf, blank=True, null=True)
     turkish = models.CharField(max_length=200)
     english = models.CharField(max_length=200)
     description = models.TextField()
@@ -33,7 +33,7 @@ class Structure(models.Model):
     # alsoCheck = I will create a processor for this task
     example = models.TextField(blank=True, null=True)
     etymology = models.TextField(blank=True, null=True)
-    original = models.OneToOneField(comesFrom, on_delete=models.CASCADE, null=True, blank=True)
+    original = models.ManyToManyField(comesFrom, null=True, blank=True)
     slug = models.SlugField(max_length=200, unique=True, null=True, blank=True)
     
     def __str__(self):

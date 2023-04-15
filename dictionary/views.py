@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 from .models import Structure
 from . import searcher
@@ -11,35 +12,60 @@ def search(request):
     if request.method == 'POST':
         searchInput = request.POST.get('search-input')
         searchType = request.POST.get('search-type')
-        if (len(searcher.searcher(searchInput)) != 0):
-            if searchType == 'Tüm Türler':
-                result = searcher.searcher(searchInput)[0]
-                downSide = [Structure.get.filter(id=obj).slug for obj in range(result.id, result.id)]
-                
-                if (result.id <= 5 or not Structure.get.filter(id=result.id) == None):
-                    topSide = [Structure.get.filter(id=obj).slug for obj in range(result.id, result.id)]
-                else:
-                    topSide = [Structure.get.filter(id=obj).slug for obj in range(result.id, result.id)]
-                    
-                
-                context = { 'searchQuery': searchInput, 'searchResults': result, 'topSide': topSide, 'downSide': downSide }
-            else:
-                result = searcher.searcher(searchInput, searchType)[0]
-                downSide = [Structure.get.filter(id=obj).slug for obj in range(result.id, result.id)]
-                
-                if (result.id <= 5 or not Structure.get.filter(id=result.id) == None):
-                    topSide = [Structure.get.filter(id=obj).slug for obj in range(result.id, result.id)]
-                else:
-                    topSide = [Structure.get.filter(id=obj).slug for obj in range(result.id, result.id)]
-                    
-                
-                context = { 'searchQuery': searchInput, 'searchResults': result, 'topSide': topSide, 'downSide': downSide }
-                
-            return render(request, 'dictionary/search.html', context)
-
+        searchResult = None
+        try:
+            searchResult = searcher.searcher(searchInput, searchType)[0]
+        except:
+            return render(request, 'dictionary/search.html', {'searchInput': searchInput, 'searchType': searchType, 'searchResult': searchResult, 'noResult': True})
+        resultId = searchResult.id
+        lowerList = []
+        upperList = []
+        for i in range(resultId + 1, resultId + 6):
+            try:
+                lowerList.append(Structure.objects.get(id=i))
+            except:
+                break
+        if resultId - 5 < 0:
+            for i in range(1, resultId):
+                try:
+                    upperList.append(Structure.objects.get(id=i))
+                except:
+                    break
         else:
-            return render(request, 'dictionary/about.html')
-
-        
+            for i in range(resultId - 5, resultId):
+                try:
+                    upperList.append(Structure.objects.get(id=i))
+                except:
+                    break
+        return render(request, 'dictionary/search.html', {'searchInput': searchInput, 'searchType': searchType, 'searchResult': searchResult, 'lowerList': lowerList, 'upperList': upperList, 'noResult': False})
     else:
-        return render(request, 'dictionary/index.html')
+        searchInput = request.POST.get('search-input')
+        searchType = request.POST.get('search-type')
+        searchResult = request.SEARCHRESULT
+        resultId = searchResult.id
+        lowerList = []
+        upperList = []
+        for i in range(resultId + 1, resultId + 6):
+            try:
+                lowerList.append(Structure.objects.get(id=i))
+            except:
+                break
+        if resultId - 5 < 0:
+            for i in range(1, resultId):
+                try:
+                    upperList.append(Structure.objects.get(id=i))
+                except:
+                    break
+        else:
+            for i in range(resultId - 5, resultId):
+                try:
+                    upperList.append(Structure.objects.get(id=i))
+                except:
+                    break
+        return render(request, 'dictionary/search.html', {'searchInput': searchInput, 'searchType': searchType, 'searchResult': searchResult, 'lowerList': lowerList, 'upperList': upperList, 'noResult': False})
+        
+        
+def slugSearch(request, slug):
+    searchResult = Structure.objects.get(slug=slug)
+    request.SEARCHRESULT = searchResult
+    return search(request)

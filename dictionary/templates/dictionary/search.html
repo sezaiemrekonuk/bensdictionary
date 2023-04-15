@@ -4,14 +4,14 @@
 {% block content %}
 <div class="container">
     <div class="accordion margin-accordion shadow" id="accordionExample">
-        {% for topStructure in topSide %}
-            <a href="{% url 'topStructure' %}"> </a>
+        {% for topStructure in upperList %}
+            <a href="{% url 'slugSearch' topStructure %}">bruh </a>
         {% endfor %}
 
-        {% include 'dictionary/partials/_structure.html' with searchResult=searchResults %}
+        {% include 'dictionary/partials/_structure.html' with searchResult=searchResult %}
 
-        {% for downStructure in downSide %}
-            <a href="{% url 'downStructure' %}"> </a>
+        {% for downStructure in lowerList %}
+            <a href="{% url 'slugSearch' downStructure %}">moment </a>
         {% endfor %}
     </div>
 </div>
