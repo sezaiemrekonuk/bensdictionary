@@ -30,11 +30,13 @@ class Structure(models.Model):
     english = models.CharField(max_length=200)
     description = models.TextField()
     extraInformation = models.CharField(max_length=200, blank=True, null=True)
-    # alsoCheck = I will create a processor for this task
     example = models.TextField(blank=True, null=True)
     etymology = models.TextField(blank=True, null=True)
     original = models.ManyToManyField(comesFrom, null=True, blank=True)
+    last_searched = models.DateTimeField(auto_now=False, blank=True, null=True)
+    search_count = models.IntegerField(default=0)
     slug = models.SlugField(max_length=200, unique=True, null=True, blank=True)
+    
     
     def __str__(self):
         return self.turkish

@@ -1,6 +1,6 @@
 :root {
     --theme-orange-low-opacity: rgba(255,150,0,0.8);
-    --theme-orange: rgba(255,150,0,1);
+    --theme-orange: rgb(255, 150, 0);
     --theme-orange-dark: rgba(196,116,0,1);
     --theme-orange-dark-low-opacity: rgba(196,116,0,0.8);
     --theme-white: #e0e0e0;
@@ -8,7 +8,7 @@
     --theme-black: #222222;
     --theme-blue: #0069FF;
     --theme-gray: #3b3b3b;
-
+    --theme-light-blue: #80B4FF;
 }
 
 body {
@@ -18,6 +18,10 @@ body {
 .theme-bg-color {
     background: var(--theme-gray);
     background: linear-gradient(0deg, var(--theme-gray) 0%, var(--theme-black) 100%);
+}
+
+.theme-light-blue {
+    color: var(--theme-light-blue);
 }
 
 .theme-color-black {
