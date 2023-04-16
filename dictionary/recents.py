@@ -14,7 +14,7 @@ def get_recent_searched_posts(limit=10):
         list: A list of dictionaries, each representing a post and including its title and the number of times it was searched.
     """
     posts = Structure.objects.order_by('last_searched')[:limit]
-    results = [{'title': post.title, 'search_count': post.search_count, 'slug': post.slug} for post in posts]
+    results = [{'title': post.english, 'search_count': post.search_count, 'slug': post.slug} for post in posts][::-1]
 
     # Update the search count and last searched time for the retrieved posts
     Structure.objects.filter(id__in=[post.id for post in posts]).update(

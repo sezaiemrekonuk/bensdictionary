@@ -41,7 +41,9 @@
                 </div>
                 <hr>
                 <div style="margin-top: 1rem;">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Est modi iusto quidem ipsum dolore laborum, illum similique quis sapiente voluptatem.
+                    {% for recentItem in recent %}
+                        <a href="{% url 'slugSearch' recentItem.slug %}" class="px-1 theme-light-blue">{{ recentItem.title }}</a>
+                    {% endfor %}
                 </div>
             </div>
         </section>

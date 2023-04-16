@@ -1,7 +1,7 @@
 from django.db.models import Q
 from dictionary.models import Structure
 
-def searcher(query, structureType=None):
+def searcher(query, structureType='Tüm Türler'):
     if structureType == 'Tüm Türler':
         queryset = Structure.objects.filter(
             Q(turkish__icontains=query) |
