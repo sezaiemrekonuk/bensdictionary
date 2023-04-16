@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from .models import Structure
 from . import searcher
 
@@ -10,6 +10,7 @@ def index(request):
 
 def search(request):   
     if request.method == 'POST':
+        print(request.session.get('FROMSLUG'))
         searchInput = request.POST.get('search-input')
         searchType = request.POST.get('search-type')
         searchResult = None
@@ -41,7 +42,7 @@ def search(request):
     else:
         searchInput = request.POST.get('search-input')
         searchType = request.POST.get('search-type')
-        searchResult = request.SEARCHRESULT
+        searchResult = request.session.get('SEARCHRESULT')
         resultId = searchResult.id
         lowerList = []
         upperList = []
@@ -67,5 +68,24 @@ def search(request):
         
 def slugSearch(request, slug):
     searchResult = Structure.objects.get(slug=slug)
-    request.SEARCHRESULT = searchResult
-    return search(request)
+    resultId = searchResult.id
+    lowerList = []
+    upperList = []
+    for i in range(resultId + 1, resultId + 6):
+        try:
+            lowerList.append(Structure.objects.get(id=i))
+        except:
+            break
+    if resultId - 5 < 0:
+        for i in range(1, resultId):
+            try:
+                upperList.append(Structure.objects.get(id=i))
+            except:
+                break
+    else:
+        for i in range(resultId - 5, resultId):
+            try:
+                upperList.append(Structure.objects.get(id=i))
+            except:
+                break
+    return render(request, 'dictionary/search.html', {'searchInput': searchResult.turkish, 'searchResult': searchResult, 'lowerList': lowerList, 'upperList': upperList, 'noResult': False})

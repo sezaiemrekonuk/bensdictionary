@@ -3,15 +3,27 @@
 {% block title %}{{ searchQuery }}{% endblock %}
 {% block content %}
 <div class="container">
-    <div class="accordion margin-accordion shadow" id="accordionExample">
+    <div class="accordion margin-accordion" id="accordionExample">
         {% for topStructure in upperList %}
-            <a href="{% url 'slugSearch' topStructure %}">bruh </a>
+            <a href="{% url 'slugSearch' topStructure.slug %}" class="accordion-item no-underline">
+                <h2 class="accordion-header no-underline" id="">
+                    <div class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="" aria-expanded="true" aria-controls="collapseOne">
+                        {{ topStructure.turkish }}
+                    </div>
+                </h2>
+            </a>
         {% endfor %}
 
         {% include 'dictionary/partials/_structure.html' with searchResult=searchResult %}
 
         {% for downStructure in lowerList %}
-            <a href="{% url 'slugSearch' downStructure %}">moment </a>
+        <a href="{% url 'slugSearch' downStructure.slug %}" class="accordion-item no-underline">
+            <h2 class="accordion-header no-underline" id="">
+                <div class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="" aria-expanded="true" aria-controls="collapseOne">
+                    {{ downStructure.turkish }}
+                </div>
+            </h2>
+        </a>
         {% endfor %}
     </div>
 </div>

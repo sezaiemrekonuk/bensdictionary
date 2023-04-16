@@ -49,6 +49,10 @@ body {
     border-radius: 0px !important;
 }
 
+.no-underline {
+    text-decoration: none !important;
+}
+
 .input-search {
     border: 1px solid;
     margin-right: 0px;
