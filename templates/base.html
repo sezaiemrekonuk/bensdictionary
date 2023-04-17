@@ -9,10 +9,21 @@
     <link href='https://fonts.googleapis.com/css?family=Kanit' rel='stylesheet'>
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    <script src=  
+    "https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js">  
+        </script>  
+        
+        <script src=  
+    "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js">  
+        </script>  
+        
+        <link href=  
+    "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css"
+            rel="stylesheet" type="text/css" />  
     {% block page_css %}{% endblock page_css %}
     <title>{% block title %}{% endblock title %} | Bens Dictionary</title>
 </head>
-<body data-theme="light">
+<body data-theme="">
     {% include 'partials/_header.html' %}
     {% block content %}{% endblock content %}
     {% include 'partials/_footer.html' %}
@@ -20,6 +31,19 @@
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <script src="https://kit.fontawesome.com/f3bbcedb9b.js" crossorigin="anonymous"></script>
     <script src="{% static 'js/custom.js' %}"></script>
+    <script>
+        $( function() {
+          var availableTags = [
+              {% for idiom in allIdioms %}
+                "{{idiom.turkish}}",
+                "{{idiom.english}}",
+              {% endfor %}
+          ];
+          $( "#search-input" ).autocomplete({
+            source: availableTags
+          });
+        } );
+        </script>
     {% block page_js %}{% endblock page_js %}
 </body>
 </html>
