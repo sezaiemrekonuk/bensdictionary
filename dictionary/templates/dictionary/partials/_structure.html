@@ -2,28 +2,28 @@
 
 <div class="accordion-item shadow my-0">
     <h2 class="accordion-header" id="headingOne">
-      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+      <button class="accordion-button theme-bg-green" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" data-bs-parent="#accordionExample">
         {{ searchResult.turkish }}
       </button>
     </h2>
     <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-        <span class="theme-light-blue">Türkçe</span><br>
+      <div class="accordion-body theme-bg-color theme-text">
+        <span class="theme-text">Türkçe</span><br>
         <span class="p-3">{{ searchResult.turkish }}</span>
         <hr class="text-center">
-        <span class="theme-light-blue">İngilizce</span><br>
+        <span class="theme-text">İngilizce</span><br>
         <span class="p-3">{{ searchResult.english }}</span>
         <hr class="text-center">
-        <span class="theme-light-blue">İngilizce Açıklama</span><br>
+        <span class="theme-text">İngilizce Açıklama</span><br>
         <span class="p-3">{{ searchResult.description }}</span>
         <hr class="text-center">
-        <span class="theme-light-blue">Ekstra Bilgi</span><br>
+        <span class="theme-text">Ekstra Bilgi</span><br>
         <span class="p-3">{{ searchResult.extraInformation }}</span>
         <hr class="text-center">
-        <span class="theme-light-blue">Örnek</span><br>
+        <span class="theme-text">Örnek</span><br>
         <span class="p-3">{{ searchResult.example }}</span>
         <hr class="text-center">
-        <span class="theme-light-blue">Etimoloji</span><br>
+        <span class="theme-text">Etimoloji</span><br>
         <span class="p-3">{{ searchResult.etymology }}</span>
       </div>
     </div>
@@ -35,3 +35,4 @@
     </div>
   </div>
 {% endif %}
+

@@ -10,12 +10,12 @@
                     <div class="px-0">
                         <div class="input-group">
                             {% csrf_token %}
-                            <input type="text" id="search-input" name="search-input" class="form-control no-round no-outline no-border top-left-round" placeholder="Sözlükte bir arama yap...">
-                            <select name="search-type" id="search-type" class="ps-2 pe-1 no-round no-outline no-border" style="border-left: 2px solid var(--theme-orange) !important;">
-                                <option value="Tüm Türler" selected>Tüm Türler</option>
-                                <option value="Kelime">Kelime</option>
-                                <option value="3">Cümle</option>
-                                <option value="4">Sözcük</option>
+                            <input type="text" id="search-input" name="search-input" class="theme-text theme-bg-color form-control no-round no-outline no-border top-left-round" placeholder="Sözlükte bir arama yap...">
+                            <select name="search-type" id="search-type" class="ps-2 pe-1 no-round no-outline theme-text no-border theme-bg-color" style="">
+                                <option value="Tüm Türler" selected class="theme-text theme-bg-color">Tüm Türler</option>
+                                <option value="Kelime" class="theme-text theme-bg-color">Kelime</option>
+                                <option value="3" class="theme-text theme-bg-color">Cümle</option>
+                                <option value="4" class="theme-text theme-bg-color">Sözcük</option>
                             </select>
                             <span class="input-group-btn">
                                 <button class="btn btn-default theme-orange no-round top-right-round" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -35,39 +35,27 @@
             </div>
           </form>
         <section id="infoBox" style="margin-top: 5rem;" class="shadow">
-            <div class="infoDiv">
-                <div>
+            <div class="infoDiv theme-text">
+                <div class=>
                     Sözcükte an itibari ile n adet kategori altında toplam m tane veri bulunmaktadır. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis earum aut consequatur. Ea doloremque laudantium harum atque commodi facilis excepturi?
                 </div>
                 <hr>
                 <div style="margin-top: 1rem;">
                     {% for recentItem in recent %}
-                        <a href="{% url 'slugSearch' recentItem.slug %}" class="px-1 theme-light-blue">{{ recentItem.title }}</a>
+                        <a href="{% url 'slugSearch' recentItem.slug %}" class="theme-light-blue">{{ recentItem.title }}</a>
                     {% endfor %}
                 </div>
             </div>
         </section>
-
-
-
-        <div id="latest-added" class="position-relative w-100 up-scale">
-          <hr class="w-75 position-absolute up-scale" style="left:12.5% ;margin-top: 1.7rem;">
-          <span class="position-absolute latest-added-text text-center"></span>
-      </div>
-      <div class="accordion margin-accordion shadow" id="accordionExample">
-          {% include 'dictionary/partials/_structure.html' %}
-      </div>
-
-
-        <div id="latest-added" class="position-relative w-100 up-scale">
-            <hr class="w-50  position-absolute up-scale" style="left: 25%; margin-top: 1.7rem;">
-            <span class="position-absolute latest-added-text text-center">En Son Eklenenler</span>
+        {% comment %} <div id="latest-added" class="position-relative w-100 up-scale">
+            <hr class="w-75 position-absolute up-scale" style="left:12.5% ;margin-top: 1.7rem;">
+            <span class="position-absolute latest-added-text text-center"></span>
+        </div> {% endcomment %}
+        <div class="row justify-content-center" style="margin-top: 5rem;">
+            <div class="col-10 col-md-5">
+                {% include 'dictionary/partials/_idiomOfDay.html' with idiomOfDay=idiomOfDay %}
+            </div>
         </div>
-        <div class="accordion margin-accordion shadow" id="accordionExample">
-            {% include 'dictionary/partials/_structure.html' %}
-        </div>
-    </div>  
-
 {% endblock content %}
 {% block page_js %}
 <script>

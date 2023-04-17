@@ -1,23 +1,61 @@
 :root {
-    --theme-orange-low-opacity: rgba(255,150,0,0.8);
-    --theme-orange: rgb(255, 150, 0);
+    --theme-orange-low-opacity: rgba(255, 153, 0,0.8);
+    --theme-orange: #FF9900;
     --theme-orange-dark: rgba(196,116,0,1);
     --theme-orange-dark-low-opacity: rgba(196,116,0,0.8);
+    /* --theme-white: #e0e0e0;
+    --theme-full-white: #fafafa;
+    --theme-black: #222222;
+    --theme-blue: #6599FF;
+    --theme-gray: #3b3b3b;
+    --theme-light-blue: #80B4FF;
+    --theme-light-blue:#6599FF;
+    --theme-green: #097054;
+    --theme-green-dark: #00e686;
+    --theme-yellow: #FFDE00; */
+}
+
+body[data-theme="dark"] {
+    background-color: var(--theme-white);
+    --theme-white: #0b0b18;
+    --theme-full-white: #13111f;
+    --theme-black: #e0e0e0;
+    --theme-blue: #6599FF;
+    --theme-gray: #e0e0e0;
+    /* --theme-light-blue: #80B4FF; */
+    --theme-light-blue:#6599FF;
+    --theme-green: #097054;
+    --theme-green-dark: #00e686;
+    --theme-yellow: #FFDE00;
+}
+
+body[data-theme="light"] {
+    background-color: var(--theme-white);
     --theme-white: #e0e0e0;
     --theme-full-white: #fafafa;
     --theme-black: #222222;
-    --theme-blue: #0069FF;
+    --theme-blue: #6599FF;
     --theme-gray: #3b3b3b;
-    --theme-light-blue: #80B4FF;
+    /* --theme-light-blue: #80B4FF; */
+    --theme-light-blue:#6599FF;
+    --theme-green: #097054;
+    --theme-green-dark: #00e686;
+    --theme-yellow: #FFDE00;
 }
 
-body {
-    background-color: var(--theme-white);
+.theme-orange-to-gray-gradient {
+    background: var(--theme-orange);
+    background: linear-gradient(0deg, var(--theme-orange) 0%, var(--theme-orange) 100%) !important;
 }
 
 .theme-bg-color {
-    background: var(--theme-gray);
-    background: linear-gradient(0deg, var(--theme-gray) 0%, var(--theme-black) 100%);
+    background: var(--theme-full-white) !important;
+    background: linear-gradient(0deg, var(--theme-full-white) 0%, var(--theme-full-white) 100%) !important;
+}
+
+.theme-bg-black {
+    background: var(--theme-gray) !important;
+    background: linear-gradient(0deg, var(--theme-gray) 0%, var(--theme-black) 100%) !important;
 }
 
 .theme-light-blue {
@@ -25,13 +63,36 @@ body {
     transition: all 0.5s ease;
 }
 
+.theme-bg-green {
+    background-color: var(--theme-green) !important;
+}
+
+.theme-bg-green-dark {
+    background-color: var(--theme-green-dark) !important;
+}
+
+.theme-green {
+    color: var(--theme-green) !important;
+}
+
 .theme-color-black {
     color: var(--theme-black) !important;
 }
 
 .theme-color {
-    color: var(--theme-white) !important;
+    color: var(--theme-full-white) !important;
 }
+
+.theme-text {
+    color: var(--theme-black) !important;
+}
+
+
+.theme-bg-white {
+    background-color: var(--theme-full-white) !important;
+}
+
+
 
 .navbar-toggler.theme-color {
     background-color: var(--theme-orange) !important;
@@ -75,7 +136,7 @@ body {
 #specialChars:nth-child(odd):hover{
     background: var(--theme-gray);
     cursor: grabbing;
-    color: var(--theme-white) !important;
+    color: var(--theme-full-white) !important;
 
 }
 
@@ -87,7 +148,7 @@ body {
 #specialChars:nth-child(even):hover{
     background: var(--theme-gray);
     cursor: grabbing;
-    color: var(--theme-white) !important;
+    color: var(--theme-full-white) !important;
 }
 
 .theme-orange {
@@ -124,6 +185,9 @@ body {
     #searchBox {
         padding: 0 2rem;
     }
+    .resizable-form {
+        scale: 1.1;
+    }
 }
 @media screen and (min-width: 768px) {
     #searchBox {
@@ -153,7 +217,7 @@ body {
 .latest-added-text {
     font-size: 2rem;
     padding: 0 1rem;
-    background-color: var(--theme-white);
+    background-color: var(--theme-full-white);
     top: 0.2rem;
     left: 50%;
     transform: translateX(-50%);
@@ -183,6 +247,9 @@ body {
 .accordion-button:not(.collapsed) {
     color: var(--theme-full-white) !important;
 }
+.accordion-button:not(.collapsed)::after {
+    transform: rotate(90deg) !important;
+}
 
 @media screen and (max-width: 768px) {
     #latest-added {
@@ -199,4 +266,17 @@ body {
 
 .color-animation-torange {
     color: var(--theme-orange);
+}
+
+.hyper-round {
+    border-radius: 2rem;
+}
+
+.over-content-header {
+    text-align: center;
+    display: block;
+    transform: translateY(-55%);
+    font-size: 2rem;
+    font-weight: 500;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
