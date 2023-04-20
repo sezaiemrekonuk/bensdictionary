@@ -95,3 +95,6 @@ def slugSearch(request, slug):
             except:
                 break
     return render(request, 'dictionary/search.html', {'searchInput': searchResult.turkish, 'searchResult': searchResult, 'lowerList': lowerList, 'upperList': upperList, 'noResult': False})
+
+def about(request):
+    return render(request, 'dictionary/about.html')

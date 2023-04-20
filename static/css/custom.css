@@ -155,6 +155,10 @@ body[data-theme="light"] {
     background: var(--theme-orange);
 }
 
+.theme-orange-text {
+    color: var(--theme-orange);
+}
+
 .btn.theme-orange:hover {
     background-color: var(--theme-orange-dark);
 }
@@ -324,3 +328,27 @@ body[data-theme="light"] {
     background: #484848;
 }
   
+
+.background-big-text {
+    top: 0;
+    width: max-content !important;
+    transform: translate(-50%, -20%);
+    opacity: 0.1;
+    left: 50%;
+    font-size: 16rem;
+}
+
+.foreground-main-text {
+    transform: translate(-50%, -50%);
+    font-size: 6rem;
+    font-weight: bold;
+    left: 50%;
+    top: 55%;
+}
+
+.circular-img {
+    width: 15.4rem !important;
+    height: 15.4rem !important;
+    border-radius: 50%;
+    object-fit: cover;
+}
