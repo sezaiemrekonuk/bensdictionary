@@ -7,7 +7,7 @@ from datetime import datetime
 # Create your views here.
 
 def index(request):
-    return render(request, 'dictionary/index.html', {'recent': recents.get_recent_searched_posts(5), 'allIdioms': Structure.objects.all()})
+    return render(request, 'dictionary/index.html', {'recent': recents.get_recent_searched_posts(5), 'allIdioms': Structure.objects.all(), 'idiomOfDay': Structure.objects.get(id=1), 'proverbOfDay': Structure.objects.get(id=2)})
 
 def search(request):
     if request.method == 'POST':

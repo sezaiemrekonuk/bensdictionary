@@ -273,9 +273,9 @@ body[data-theme="light"] {
 }
 
 .over-content-header {
-    padding: 0 5rem;
-    text-align: center;
-    display: block;
+    padding: 0 50%;
+    display: flex;
+    justify-content: center;
     transform: translateY(-55%);
     font-size: 2rem;
     font-weight: 500;
