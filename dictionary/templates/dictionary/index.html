@@ -34,7 +34,7 @@
                 </div>
             </div>
           </form>
-        <section id="infoBox" style="margin-top: 5rem;" class="shadow">
+        <section id="infoBox" style="margin-top: 5rem; margin-bottom: 3rem;" class="shadow">
             <div class="infoDiv theme-text">
                 <div class=>
                     Sözcükte an itibari ile n adet kategori altında toplam m tane veri bulunmaktadır. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis earum aut consequatur. Ea doloremque laudantium harum atque commodi facilis excepturi?
@@ -47,11 +47,11 @@
                 </div>
             </div>
         </section>
-        {% comment %} <div id="latest-added" class="position-relative w-100 up-scale">
-            <hr class="w-75 position-absolute up-scale" style="left:12.5% ;margin-top: 1.7rem;">
-            <span class="position-absolute latest-added-text text-center"></span>
-        </div> {% endcomment %}
-        <div class="row justify-content-evenly align-items-center" style="margin-top: 5rem;">
+        <div id="latest-added" class="position-relative w-100 up-scale">
+            <hr class="w-75 position-absolute up-scale theme-text" style="left:12.5% ;margin-top: 1.7rem;">
+            <span class="position-absolute theme-text latest-added-text text-center">Günün Seçilenleri</span>
+        </div>
+        <div class="row justify-content-evenly align-items-center" style="margin-top: 8rem;">
             <div class="col-8 col-sm-5 col-md-4 col-xl-3 p-1">
                 {% include 'dictionary/partials/_idiomOfDay.html' with searchResult=idiomOfDay %}
             </div>

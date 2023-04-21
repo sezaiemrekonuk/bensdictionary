@@ -220,8 +220,8 @@ body[data-theme="light"] {
 
 .latest-added-text {
     font-size: 2rem;
-    padding: 0 1rem;
-    background-color: var(--theme-full-white);
+    padding: 0 1.3rem;
+    background-color: var(--theme-white);
     top: 0.2rem;
     left: 50%;
     transform: translateX(-50%);

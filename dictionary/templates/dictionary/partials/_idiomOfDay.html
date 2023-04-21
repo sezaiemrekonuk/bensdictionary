@@ -1,6 +1,6 @@
 <div class="theme-orange-to-gray-gradient hyper-round">
     <div class="theme-bg-white m-1 hyper-round">
-        <div class="over-content-header theme-text"><em>Günün Seçileni</em></div>
+        <div class="over-content-header theme-text"><em>{{ searchResult.structureType.get }}</em></div>
         <div class="px-3 pb-3">
             <span class="theme-text">Türkçe</span><br>
             <span class="p-1 theme-text">{{ searchResult.turkish }}</span>
@@ -19,6 +19,35 @@
             <hr class="text-center">
             <span class="theme-text">Etimoloji</span><br>
             <span class="p-1 theme-text">{{ searchResult.etymology }}</span>
+            <a type="button" class="theme-text d-block text-end" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                Düzeltme öner...
+            </a>
+        </div>
+        <!-- Button trigger modal -->
+       
+
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">"{{ searchResult.turkish }}" düzeltmesi</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{% url 'correct' searchResult.slug %}">
+                    {% csrf_token %}
+                    <input type="text" name="correction" placeholder="Lütfen düzeltmenizi giriniz" required>
+                    <input type="hidden" name="object" value="{{ searchResult }}">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                <button type="submit" class="btn btn-primary">Gönder</button>
+            </form>                
+
+            </div>
+            </div>
+        </div>
         </div>
     </div>
 </div>

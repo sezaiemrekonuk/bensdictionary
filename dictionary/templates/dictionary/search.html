@@ -6,7 +6,7 @@
     <div class="accordion accordion-flush" id="accordionExample">
         {% for topStructure in upperList %}
             <a href="{% url 'slugSearch' topStructure.slug %}" class="accordion-item no-underline">
-                <h2 class="accordion-header no-underline" id="">
+                <h2 class="accordion-header no-underline" style="opacity: 0.75;" id="">
                     <div class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="" aria-expanded="true" aria-controls="collapseOne">
                         {{ topStructure.turkish }}
                     </div>
@@ -16,7 +16,7 @@
         {% include 'dictionary/partials/_structure.html' with searchResult=searchResult %}
         {% for downStructure in lowerList %}
         <a href="{% url 'slugSearch' downStructure.slug %}" class="accordion-item no-underline">
-            <h2 class="accordion-header no-underline" id="">
+            <h2 class="accordion-header no-underline" style="opacity: 0.75;" id="">
                 <div class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="" aria-expanded="true" aria-controls="collapseOne">
                     {{ downStructure.turkish }}
                 </div>
