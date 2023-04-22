@@ -35,16 +35,19 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="{% url 'correct' searchResult.slug %}">
+                <form action="{% url 'correct' searchResult.slug %}" method="POST">
                     {% csrf_token %}
-                    <input type="text" name="correction" placeholder="Lütfen düzeltmenizi giriniz" required>
-                    <input type="hidden" name="object" value="{{ searchResult }}">
-            </div>
+                    <div class="p-2 row justify-content-evenly">
+                        <div class="col-6"><input class="form-control" type="text" name="corrector" placeholder="İsminiz" required></div>
+                        <div class="col-6"><input class="form-control" type="email" name="corrector_mail" placeholder="E-Mail Adresiniz" required></div>
+                        <div class="col-12 mt-3"><textarea class="form-control" name="correction" id="" cols="30" rows="10" placeholder="Düzeltmeniz"></textarea></div>
+                        
+                    </div>
+                </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
                 <button type="submit" class="btn btn-primary">Gönder</button>
-            </form>                
-
+            </form>
             </div>
             </div>
         </div>

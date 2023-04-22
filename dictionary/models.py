@@ -44,3 +44,14 @@ class Structure(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.turkish)
         super(Structure, self).save(*args, **kwargs)
+
+class Correct(models.Model):
+    toStructure = models.ForeignKey(Structure, on_delete=models.CASCADE)
+    corrector = models.CharField(max_length=200)
+    corrector_mail = models.EmailField()
+    correction = models.TextField()
+    creation_date = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return self.corrector
+    
