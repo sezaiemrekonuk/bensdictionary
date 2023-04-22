@@ -1,7 +1,7 @@
 <div class="theme-orange-to-gray-gradient hyper-round">
-    <div class="theme-bg-white m-1 hyper-round">
-        <div class="over-content-header theme-text"><em>{{ searchResult.structureType.get }}</em></div>
-        <div class="px-3 pb-3">
+    <div class="theme-bg-white m-1 hyper-round position-relative">
+        <div class="over-content-header theme-text text-center"><em>{{ searchResult.structureType }}</em></div>
+        <div class="px-3 pb-3 pt-0 mt-0">
             <span class="theme-text">Türkçe</span><br>
             <span class="p-1 theme-text">{{ searchResult.turkish }}</span>
             <hr class="text-center">
@@ -41,7 +41,7 @@
                         <div class="col-6"><input class="form-control" type="text" name="corrector" placeholder="İsminiz" required></div>
                         <div class="col-6"><input class="form-control" type="email" name="corrector_mail" placeholder="E-Mail Adresiniz" required></div>
                         <div class="col-12 mt-3"><textarea class="form-control" name="correction" id="" cols="30" rows="10" placeholder="Düzeltmeniz"></textarea></div>
-                        
+                        <div class="col-5"><input type="text" name="iamhuman" class="form-control my-4" placeholder="Türkiye'nin başkenti"></div>
                     </div>
                 </div>
             <div class="modal-footer">

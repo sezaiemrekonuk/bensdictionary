@@ -104,6 +104,8 @@ def about(request):
 def correct(request, slug):
     correctedSctructure = get_object_or_404(Structure, slug=slug)
     if request.method == 'POST':
+        if request.POST.get('iamhuman').lower() != 'ankara':
+            return HttpResponse('You are not human! or??')
         corrector = request.POST.get('corrector')
         correction = request.POST.get('correction')
         corrector_mail = request.POST.get('corrector_mail')
