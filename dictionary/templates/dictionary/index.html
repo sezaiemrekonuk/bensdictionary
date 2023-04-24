@@ -74,4 +74,36 @@
       copyButtons[i].addEventListener("click", copyText);
     }
 </script>
+<script>
+    $( function() {
+        var availableTags = [
+            {% for idiom in allIdioms %}
+              {
+                label: "{{idiom.turkish}}",
+                url: "search/{{idiom.slug}}"
+              },
+            {% endfor %}
+        ];
+        availableTags.push(
+        {% for idiom in allIdioms %}
+          {
+            label: "{{idiom.english}}",
+            url: "search/{{idiom.slug}}"
+          },
+        {% endfor %}
+        );
+        $( "#search-input" ).autocomplete({
+            source: function(request, response) {
+                var results = $.ui.autocomplete.filter(availableTags, request.term);
+                response(results.slice(0, 10))},
+          select: function(event, ui) {
+            window.location.href = ui.item.url;
+          }
+        }).autocomplete("instance")._renderItem = function(ul, item) {
+          return $("<li>")
+            .append($("<div>").text(item.label))
+            .appendTo(ul);
+        };
+      });
+</script>
 {% endblock page_js %}

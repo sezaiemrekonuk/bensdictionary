@@ -25,9 +25,38 @@
         <hr class="text-center">
         <span class="theme-text">Etimoloji</span><br>
         <span class="p-3">{{ searchResult.etymology }}</span>
+        <a type="button" class="theme-text d-block text-end" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+          Düzeltme öner...
+      </a>
       </div>
     </div>
   </div>
+
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">"{{ searchResult.turkish }}" düzeltmesi</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form action="{% url 'correct' searchResult.slug %}" method="POST">
+                {% csrf_token %}
+                <div class="p-2 row justify-content-evenly">
+                    <div class="col-6"><input class="form-control" type="text" name="corrector" placeholder="İsminiz" required></div>
+                    <div class="col-6"><input class="form-control" type="email" name="corrector_mail" placeholder="E-Mail Adresiniz" required></div>
+                    <div class="col-12 mt-3"><textarea class="form-control" name="correction" id="" cols="30" rows="10" placeholder="Düzeltmeniz"></textarea></div>
+                    <div class="col-5"><input type="text" name="iamhuman" class="form-control my-4" placeholder="Türkiye'nin başkenti"></div>
+                </div>
+            </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+            <button type="submit" class="btn btn-primary">Gönder</button>
+        </form>
+        </div>
+        </div>
+    </div>
+    </div>
 {% else %}
   <div class="container">
     <div class="display-2 text-center p-5">
