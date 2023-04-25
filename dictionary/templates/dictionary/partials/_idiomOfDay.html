@@ -1,6 +1,17 @@
 <div class="theme-orange-to-gray-gradient hyper-round">
     <div class="theme-bg-white m-1 hyper-round position-relative">
-        <div class="over-content-header theme-text text-center"><em>{{ searchResult.structureType }}</em></div>
+        <div class="over-content-header theme-text text-center"><em>
+            Günün 
+            {% if searchResult.structureType|stringformat:'s' == "Deyim"  %}
+            Deyimi
+            {% elif searchResult.structureType|stringformat:'s' == "Atasözü" %}
+            Atasözü
+            {% elif searchResult.structureType|stringformat:'s' == "Argo deyim" %}
+            Argo Deyimi
+            {% else %}
+            Atasözümsü Deyimi
+            {% endif %}
+        </em></div>
         <div class="px-3 pb-3 pt-0 mt-0">
             <span class="theme-text">Türkçe</span><br>
             <span class="p-1 theme-text">{{ searchResult.turkish }}</span>

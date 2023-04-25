@@ -260,11 +260,18 @@ body[data-theme="light"] {
         margin-top: 1rem;
         padding-bottom: 0.1rem;
     }
+    .logo-index {
+        scale: 0.7;
+        left: 35% !important;
+    }
 }
 
 @media screen and (min-width: 768px) {
     #latest-added {
         margin-top: 2rem;
+    }
+    .logo-index {
+        scale: 1;
     }
 }
 
@@ -354,3 +361,15 @@ body[data-theme="light"] {
     border-radius: 50%;
     object-fit: cover;
 }
+
+.logo-index {
+    clip-path: inset(100px, 0);
+    left: 50%;
+    top: -50%;
+    transform: translateX(-50%);
+}
+
+.logo-container {
+    height: 13rem;
+}
+

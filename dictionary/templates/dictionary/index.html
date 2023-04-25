@@ -3,6 +3,9 @@
 {% block title %}Home{% endblock title %}
 {% block content %}
     <div class="container">
+        <div class="logo-container position-relative">
+          <img src="" alt="Logo" class="logo-index position-absolute" id="logo-index">
+        </div>
         <form method="POST" action="{% url 'search' %}" id="searchBox" class="justify-content-center">
             <div class="row justify-content-md-center mt-5 text-center">
                 <div class="col-md-6 px-0 shadow">
@@ -64,16 +67,7 @@
         </div>
 {% endblock content %}
 {% block page_js %}
-<script>
-    var copyButtons = document.querySelectorAll("#specialChars");
-    function copyText(event) {
-      var buttonText = event.target.getAttribute("data-text");
-      document.getElementById("search-input").value += buttonText;
-    }
-    for (var i = 0; i < copyButtons.length; i++) {
-      copyButtons[i].addEventListener("click", copyText);
-    }
-</script>
+<script src="{% static 'dictionary/js/indexScripts.js' %}"></script>
 <script>
     $( function() {
         var availableTags = [
@@ -106,4 +100,5 @@
         };
       });
 </script>
+
 {% endblock page_js %}
