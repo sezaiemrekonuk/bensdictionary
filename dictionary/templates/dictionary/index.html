@@ -16,9 +16,10 @@
                             <input type="text" id="search-input" name="search-input" class="theme-text theme-bg-color form-control no-round no-outline no-border top-left-round" placeholder="Sözlükte bir arama yap...">
                             <select name="search-type" id="search-type" class="ps-2 pe-1 no-round no-outline theme-text no-border theme-bg-color" style="">
                                 <option value="Tüm Türler" selected class="theme-text theme-bg-color">Tüm Türler</option>
-                                <option value="Kelime" class="theme-text theme-bg-color">Kelime</option>
-                                <option value="3" class="theme-text theme-bg-color">Cümle</option>
-                                <option value="4" class="theme-text theme-bg-color">Sözcük</option>
+                                <option value="Argo deyim" class="theme-text theme-bg-color">Argo deyim</option>
+                                <option value="Deyim" class="theme-text theme-bg-color">Deyim</option>
+                                <option value="Atasözümsü deyim" class="theme-text theme-bg-color">Atasözümsü deyim</option>
+                                <option value="Atasözü" class="theme-text theme-bg-color">Atasözü</option>
                             </select>
                             <span class="input-group-btn">
                                 <button class="btn btn-default theme-orange no-round top-right-round" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -70,34 +71,59 @@
 <script src="{% static 'dictionary/js/indexScripts.js' %}"></script>
 <script>
     $( function() {
-        var availableTags = [
+        let availableTags = [];
+        let sortedTags = []
+        window.addEventListener('load', () => {
+          availableTags = [
             {% for idiom in allIdioms %}
               {
+                type: "{{idiom.structureType}}",
                 label: "{{idiom.turkish}}",
                 url: "search/{{idiom.slug}}"
               },
             {% endfor %}
-        ];
-        availableTags.push(
-        {% for idiom in allIdioms %}
-          {
-            label: "{{idiom.english}}",
-            url: "search/{{idiom.slug}}"
-          },
-        {% endfor %}
-        );
+          ];
+          availableTags.push(
+            {% for idiom in allIdioms %}
+              {
+                type: "{{idiom.structureType}}",
+                label: "{{idiom.english}}",
+                url: "search/{{idiom.slug}}"
+              },
+            {% endfor %}
+          );
+          if (document.getElementById("search-type").value !== 'Tüm Türler') {
+            sortedTags = []
+            for (let structure of availableTags){
+              if (structure.type === document.getElementById("search-type").value){
+                  console.log(structure.type)
+                  sortedTags.push(structure)
+              } 
+            }
+          } else {
+            sortedTags = availableTags
+          }
+        })
+        document.getElementById('search-type').addEventListener('change', () => {
+            if (document.getElementById("search-type").value !== 'Tüm Türler') {
+                sortedTags = []
+                for (let structure of availableTags) {
+                    if (structure.type === document.getElementById("search-type").value) {
+                        console.log(structure.type)
+                        sortedTags.push(structure)
+                    }
+                }
+            }
+        }) 
+
         $( "#search-input" ).autocomplete({
             source: function(request, response) {
-                var results = $.ui.autocomplete.filter(availableTags, request.term);
+                let results = $.ui.autocomplete.filter(sortedTags, request.term);
                 response(results.slice(0, 10))},
           select: function(event, ui) {
             window.location.href = ui.item.url;
           }
-        }).autocomplete("instance")._renderItem = function(ul, item) {
-          return $("<li>")
-            .append($("<div>").text(item.label))
-            .appendTo(ul);
-        };
+        })
       });
 </script>
 
