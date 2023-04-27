@@ -52,27 +52,12 @@ def search(request):
                     except:
                         break
         else:
-            structureLen = len(Structure.objects.all())
-            listLen = 0
-            iterator = resultId + 1
-            while listLen < 5 and iterator < structureLen:
-                try:
-                    upperList.append(Structure.objects.get(id=iterator,
-                                                           structureType=typeOf.objects.get(type=searchType)))
-                    iterator += 1
-                    listLen += 1
-                except:
-                    iterator += 1
-            listLenTwo = 0
-            iteratorTwo = resultId - 1
-            while listLenTwo < 5 and iteratorTwo >= 0:
-                try:
-                    lowerList.append(Structure.objects.get(id=iteratorTwo,
-                                                           structureType=typeOf.objects.get(type=searchType)))
-                    iteratorTwo -= 1
-                    listLenTwo += 1
-                except:
-                    iteratorTwo -= 1
+            filteredQueries = Structure.objects.filter(structureType=typeOf.objects.get(type=searchType)).order_by(
+                'turkish')
+            indexOfStructure = list(filteredQueries).index(searchResult)
+            print(indexOfStructure)
+            upperList = filteredQueries[max(0, indexOfStructure - 5):indexOfStructure]
+            lowerList = filteredQueries[indexOfStructure + 1:indexOfStructure + 6]
 
         return render(request, 'dictionary/search.html',
                       {'searchInput': searchInput, 'searchType': searchType, 'searchResult': searchResult,
@@ -106,31 +91,18 @@ def slugSearch(request, slug):
                 except:
                     break
     else:
-        structureLen = len(Structure.objects.all())
-        listLen = 0
-        iterator = resultId + 1
-        while listLen < 5 and iterator < structureLen:
-            try:
-                upperList.append(Structure.objects.get(id=iterator,
-                                                       structureType=typeOf.objects.get(type=searchType)))
-                iterator += 1
-                listLen += 1
-            except:
-                iterator += 1
-        listLenTwo = 0
-        iteratorTwo = resultId - 1
-        while listLenTwo < 5 and iteratorTwo >= 0:
-            try:
-                lowerList.append(Structure.objects.get(id=iteratorTwo,
-                                                       structureType=typeOf.objects.get(type=searchType)))
-                iteratorTwo -= 1
-                listLenTwo += 1
-            except:
-                iteratorTwo -= 1
+        filteredQueries = Structure.objects.filter(
+            structureType=typeOf.objects.get(type=searchType)).order_by(
+            'turkish')
+        indexOfStructure = list(filteredQueries).index(searchResult)
+        print(indexOfStructure)
+        upperList = filteredQueries[max(0, indexOfStructure - 5):indexOfStructure]
+        lowerList = filteredQueries[indexOfStructure + 1:indexOfStructure + 6]
+
 
     return render(request, 'dictionary/search.html',
-                  {'searchResult': searchResult,
-                   'lowerList': lowerList, 'upperList': upperList, 'noResult': False})
+              {'searchResult': searchResult,
+               'lowerList': lowerList, 'upperList': upperList, 'noResult': False})
 
 
 def about(request):
