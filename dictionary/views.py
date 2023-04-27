@@ -4,7 +4,8 @@ from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 
 from . import searcher, recents
-from .models import Structure, Correct, typeOf
+from .models import Structure, Correct, typeOf, Contact
+from .forms import ContactForm
 
 
 # Create your views here.
@@ -99,10 +100,9 @@ def slugSearch(request, slug):
         upperList = filteredQueries[max(0, indexOfStructure - 5):indexOfStructure]
         lowerList = filteredQueries[indexOfStructure + 1:indexOfStructure + 6]
 
-
     return render(request, 'dictionary/search.html',
-              {'searchResult': searchResult,
-               'lowerList': lowerList, 'upperList': upperList, 'noResult': False})
+                  {'searchResult': searchResult,
+                   'lowerList': lowerList, 'upperList': upperList, 'noResult': False})
 
 
 def about(request):
@@ -121,3 +121,23 @@ def correct(request, slug):
                                corrector_mail=corrector_mail)
         return HttpResponse('Thanks for your correction!')
     return redirect('slugSearch', slug=slug)
+
+
+def contact(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            # işlenecek form verileri burada
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            subject = form.cleaned_data['subject']
+            message = form.cleaned_data['message']
+            # form verilerini işleyen kod burada yer alacak
+            try:
+                Contact.objects.get(subject=subject)
+            except:
+                Contact(name=name,email=email, subject=subject, message=message).save()
+    else:
+        form = ContactForm()
+
+    return render(request, 'dictionary/contact.html', {'form': form})

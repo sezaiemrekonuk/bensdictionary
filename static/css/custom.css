@@ -17,6 +17,7 @@
 
 body[data-theme="dark"] {
     background-color: var(--theme-white);
+    transition: background-color .4s;
     --theme-white: #0b0b18;
     --theme-full-white: #191725;
     --theme-black: #e0e0e0;
@@ -30,6 +31,7 @@ body[data-theme="dark"] {
 }
 
 body[data-theme="light"] {
+    transition: background-color .4s;
     background-color: var(--theme-white);
     --theme-white: #e0e0e0;
     --theme-full-white: #fafafa;
@@ -81,6 +83,7 @@ body[data-theme="light"] {
 
 .theme-color {
     color: var(--theme-full-white) !important;
+    transition: color 1;
 }
 
 .theme-text {
@@ -373,3 +376,23 @@ body[data-theme="light"] {
     height: 13rem;
 }
 
+.contact-form input, .contact-form textarea {
+    width: 100%;
+    border-radius: 7px;
+    border: none;
+    outline: none;
+    padding: 5px 10px;
+}
+
+#loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
