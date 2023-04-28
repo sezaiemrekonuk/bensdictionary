@@ -27,11 +27,8 @@ def search(request):
         except:
             return render(request, 'dictionary/search.html',
                           {'searchInput': searchInput, 'searchType': searchType, 'noResult': True})
-        searchResult.last_searched = datetime.now()
-        searchResult.search_count += 1
-        searchResult.save()
+
         resultId = searchResult.id
-        print('resultId:', resultId)
         lowerList = []
         upperList = []
         if searchType == 'Tüm Türler':
@@ -56,10 +53,12 @@ def search(request):
             filteredQueries = Structure.objects.filter(structureType=typeOf.objects.get(type=searchType)).order_by(
                 'turkish')
             indexOfStructure = list(filteredQueries).index(searchResult)
-            print(indexOfStructure)
             upperList = filteredQueries[max(0, indexOfStructure - 5):indexOfStructure]
             lowerList = filteredQueries[indexOfStructure + 1:indexOfStructure + 6]
 
+        searchResult.last_searched = datetime.now()
+        searchResult.search_count += 1
+        searchResult.save()
         return render(request, 'dictionary/search.html',
                       {'searchInput': searchInput, 'searchType': searchType, 'searchResult': searchResult,
                        'lowerList': lowerList, 'upperList': upperList, 'noResult': False})
@@ -136,7 +135,7 @@ def contact(request):
             try:
                 Contact.objects.get(subject=subject)
             except:
-                Contact(name=name,email=email, subject=subject, message=message).save()
+                Contact(name=name, email=email, subject=subject, message=message).save()
     else:
         form = ContactForm()
 
