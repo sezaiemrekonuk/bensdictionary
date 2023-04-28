@@ -265,6 +265,7 @@ body[data-theme="light"] {
     .logo-index {
         scale: 0.7;
         left: 35% !important;
+        transform: translate(-50%, -33%) !important;
     }
 }
 
@@ -367,8 +368,8 @@ body[data-theme="light"] {
 .logo-index {
     clip-path: inset(100px, 0);
     left: 50%;
-    top: -50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, -20%);
+    z-index: -1;
 }
 
 .logo-container {
