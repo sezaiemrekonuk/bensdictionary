@@ -396,3 +396,31 @@ body[data-theme="light"] {
     justify-content: center;
     align-items: center;
 }
+
+#contactRight a {
+    text-decoration: none;
+    color: var(--theme-orange)
+}
+
+#contactRight .linkedin {
+    color: var(--theme-black) !important;
+}
+
+#contactRight .instagram {
+    color: var(--theme-black)
+}
+
+#socials a {text-decoration: none; color: var(--theme-black)}
+
+.linkedin {
+    font-size: 1.2rem;
+}
+
+#footer .footerdev {
+    text-decoration: none;
+    color: var(--theme-orange);
+}
+
+.display-5 {
+    font-size: 3rem !important;
+}

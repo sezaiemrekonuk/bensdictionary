@@ -1,38 +1,68 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="container d-flex justify-content-evenly align-items-center row">
-        <div class="flex-column text-center p-5 col-12 col-md-5">
-            <h1 class="theme-text my-4">İletişim Formu</h1>
-            <form method="post" id="contact-form" class="needs-validation theme-text contact-form text-center"
-                  novalidate>
-                {% csrf_token %}
-                <div class="mb-3">
-                    {{ form.name }}
-                    <div class="invalid-feedback w-100">
-                        {{ form.name.errors }}
+    <div class="container ">
+        <div class="row justify-content-evenly">
+            <div class="flex-column text-center p-5 col-12 col-md-5">
+                <h1 class="theme-text my-4">İletişim Formu</h1>
+                <form method="post" id="contact-form" class="needs-validation theme-text contact-form text-center"
+                      novalidate>
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        {{ form.name }}
+                        <div class="invalid-feedback w-100">
+                            {{ form.name.errors }}
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        {{ form.email }}
+                        <div class="invalid-feedback">
+                            {{ form.email.errors }}
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        {{ form.subject }}
+                        <div class="invalid-feedback">
+                            {{ form.subject.errors }}
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        {{ form.message }}
+                        <div class="invalid-feedback">
+                            {{ form.message.errors }}
+                        </div>
+                    </div>
+                    <button type="submit" class="btn theme-orange">Gönder</button>
+                </form>
+            </div>
+
+            <div class="col-12 col-md-5 d-flex align-items-center justify-content-center theme-text" id="contactRight">
+                <div>
+                    <div class="align-items-center d-flex my-2">
+                        <a class="fa-brands fa-linkedin me-2 display-5 linkedin"
+                           href="https://tr.linkedin.com/in/b%C3%BCnyamin-%C3%A7i%C3%A7ek-2b53b4216"></a><a
+                            class="fs-2 ms-2" href="https://tr.linkedin.com/in/b%C3%BCnyamin-%C3%A7i%C3%A7ek-2b53b4216">Bünyamin
+                        Çiçek</a>
+                    </div>
+                    <div class="align-items-center d-flex my-2">
+                        <a class="fa-brands fa-linkedin me-2 display-5 linkedin"
+                           href="https://tr.linkedin.com/in/sezaiemrekonuk"></a><a
+                            class="fs-2 ms-2" href="https://tr.linkedin.com/in/sezaiemrekonuk">/dev Sezai Emre Konuk</a>
+                    </div>
+                    <div class="align-items-center d-flex my-2">
+                        <a class="fa-brands fa-instagram me-2 display-5 instagram d-block"
+                           href="https://www.instagram.com/bensdictionary/?igshid=ZWIzMWE5ZmU3Zg%3D%3D"></a><a
+                            class="fs-2 ms-2 d-flex"
+                            href="https://www.instagram.com/thisisbunyamin/?igshid=YmMyMTA2M2Y%3D">thisisbunyamin</a>
+                    </div>
+                    <div class="align-items-center d-flex my-2">
+                        <a class="fa-brands fa-instagram me-2 display-5 instagram d-inline-block"
+                           href="https://www.instagram.com/bensdictionary/?igshid=ZWIzMWE5ZmU3Zg%3D%3D"></a><a
+                            class="fs-2 ms-2"
+                            href="https://www.instagram.com/bensdictionary/?igshid=ZWIzMWE5ZmU3Zg%3D%3D">bensdictionary</a>
                     </div>
                 </div>
-                <div class="mb-3">
-                    {{ form.email }}
-                    <div class="invalid-feedback">
-                        {{ form.email.errors }}
-                    </div>
-                </div>
-                <div class="mb-3">
-                    {{ form.subject }}
-                    <div class="invalid-feedback">
-                        {{ form.subject.errors }}
-                    </div>
-                </div>
-                <div class="mb-3">
-                    {{ form.message }}
-                    <div class="invalid-feedback">
-                        {{ form.message.errors }}
-                    </div>
-                </div>
-                <button type="submit" class="btn theme-orange">Gönder</button>
-            </form>
+            </div>
         </div>
     </div>
 {% endblock %}
