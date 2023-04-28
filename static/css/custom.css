@@ -17,7 +17,6 @@
 
 body[data-theme="dark"] {
     background-color: var(--theme-white);
-    transition: background-color .4s;
     --theme-white: #0b0b18;
     --theme-full-white: #191725;
     --theme-black: #e0e0e0;
@@ -31,7 +30,6 @@ body[data-theme="dark"] {
 }
 
 body[data-theme="light"] {
-    transition: background-color .4s;
     background-color: var(--theme-white);
     --theme-white: #e0e0e0;
     --theme-full-white: #fafafa;
@@ -83,11 +81,12 @@ body[data-theme="light"] {
 
 .theme-color {
     color: var(--theme-full-white) !important;
-    transition: color 1;
+    transition: color 0.1s;
 }
 
 .theme-text {
     color: var(--theme-black) !important;
+    transition: color 0.4s;
 }
 
 
@@ -107,15 +106,15 @@ body[data-theme="light"] {
 
 .btn-search-theme {
     background-color: var(--theme-orange);
-    margin-left: 0px;
+    margin-left: 0;
     padding: 0;
     width: 2%;
     border: 0;
-    right: 0px;
+    right: 0;
 }
 
 .no-round {
-    border-radius: 0px !important;
+    border-radius: 0 !important;
 }
 
 .no-underline {
@@ -124,12 +123,12 @@ body[data-theme="light"] {
 
 .input-search {
     border: 1px solid;
-    margin-right: 0px;
+    margin-right: 0;
     padding: 0;
 }
 
 .input-search:focus {
-    outline: 0px;
+    outline: 0;
 }
 
 #specialChars:nth-child(odd){
@@ -172,7 +171,7 @@ body[data-theme="light"] {
 }
 
 .no-border {
-    border: 0px !important;
+    border: 0 !important;
 }
 
 .top-left-round{
@@ -315,13 +314,13 @@ body[data-theme="light"] {
 #sun{
     font-size: 35px;
     color: var(--theme-white);
-    margin:0px 20px 0px 5px;
+    margin:0 20px 0 5px;
 }
 
 #moon{
     font-size: 35px;
     color:var(--theme-white);
-    margin:0px 5px 0px 20px;
+    margin:0 5px 0 20px;
 }
 
 .switch::before{
@@ -423,4 +422,9 @@ body[data-theme="light"] {
 
 .display-5 {
     font-size: 3rem !important;
+}
+
+select option {
+    background: var(--theme-black) !important;
+    color: var(--theme-white) !important;
 }
